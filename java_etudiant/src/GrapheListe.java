@@ -59,10 +59,10 @@ public class GrapheListe implements Graphe{
     @Override
     public String toString (){
         String aff= "";
-        for (int i= 0; i<listeNoeuds().size(); i++){
-            aff += ensNom.get(i) + " ";
+        for (int i= 0; i<ensNoeuds.size(); i++){
+            aff += ensNom.get(i) + " -> ";
             for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
-                aff += ensNoeuds.get(i).getAdj() + "(" + ensNoeuds.get(i).getUnArc(j).getCout();
+                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout();
             }
         }
         return aff;
