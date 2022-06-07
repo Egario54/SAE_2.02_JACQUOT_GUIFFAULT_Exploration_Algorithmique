@@ -20,4 +20,9 @@ public class Noeud {
     public String getNom(){
         return this.nom;
     }
+
+    public void ajouterArc(String destination, double cout){
+        Arc arc = new Arc (destination,cout);
+        adj.add(arc);
+    }
 }
