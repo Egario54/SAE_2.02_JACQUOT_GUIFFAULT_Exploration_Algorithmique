@@ -55,5 +55,9 @@ public class Noeud {
         return adj.get(i);
     }
 
+    public void setNom(String n){
+        this.nom = n;
+    }
+
 
 }

@@ -27,11 +27,10 @@ public class GrapheListe implements Graphe{
      * @param cout le cout de l'arc
      */
     public void ajouterArc (String depart, String destination, double cout){
-        for (int i=0; i<ensNoeuds.size(); i++){
-            if (ensNoeuds.get(i).equals(depart)){
-                ensNoeuds.get(i).ajouterArc(destination, cout);
-            }
-        }
+            Noeud n =new Noeud(depart);
+            n.ajouterArc(destination, cout);
+            ensNoeuds.add(n);
+
     }
 
     @Override
@@ -45,9 +44,10 @@ public class GrapheListe implements Graphe{
 
     @Override
     public List<Arc> suivants(String n) {
+        Noeud noeud = new Noeud(n);
         List<Arc> arcs = null;
         for (int i=0; i<ensNoeuds.size(); i++){
-            if (ensNoeuds.get(i).equals(n)){
+            if (ensNoeuds.get(i).equals(noeud)){
                 for (int j=0; j<ensNoeuds.get(i).getAdj().size(); j++){
                     arcs = ensNoeuds.get(i).getAdj();
                 }
@@ -60,10 +60,11 @@ public class GrapheListe implements Graphe{
     public String toString (){
         String aff= "";
         for (int i= 0; i<ensNoeuds.size(); i++){
-            aff += ensNom.get(i) + " -> ";
+            aff += ensNoeuds.get(i).getNom() + " -> ";
             for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
-                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout();
+                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout() + ") ";
             }
+            aff += "\n";
         }
         return aff;
     }
