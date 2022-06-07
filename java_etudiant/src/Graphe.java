@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface Graphe {
     /**
      * Methode renvoyant la liste des noeuds d'un graphe
