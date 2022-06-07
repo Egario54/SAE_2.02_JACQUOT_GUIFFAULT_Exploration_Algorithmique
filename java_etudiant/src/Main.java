@@ -9,5 +9,6 @@ public class Main {
         graphe.ajouterArc("C","A",19);
         graphe.ajouterArc("D","B",23);
         System.out.println(graphe.toString());
+        System.out.println(graphe.toGraphviz());
     }
 }

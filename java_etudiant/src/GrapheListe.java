@@ -14,6 +14,9 @@ public class GrapheListe implements Graphe{
      */
     private List<Noeud> ensNoeuds;
 
+    /**
+     * Constructeur qui construit deux listes (noms et noeuds) pour représenter les noeuds
+     */
     public GrapheListe (){
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
@@ -41,6 +44,10 @@ public class GrapheListe implements Graphe{
             }
     }
 
+    /**
+     * Retourne une liste des noms de noeuds
+     * @return Liste des noms des noeuds
+     */
     @Override
     public List<String> listeNoeuds() {
         List<String > aff = null;
@@ -50,6 +57,11 @@ public class GrapheListe implements Graphe{
         return aff;
     }
 
+    /**
+     * Methode qui renvoie la liste des arcs d'un noeud
+     * @param n nom des arcs d'un
+     * @return Liste d'arcs
+     */
     @Override
     public List<Arc> suivants(String n) {
         Noeud noeud = new Noeud(n);
@@ -70,18 +82,23 @@ public class GrapheListe implements Graphe{
         for (int i= 0; i<ensNoeuds.size(); i++){
             aff += ensNoeuds.get(i).getNom() + " -> ";
             for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
-                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout() + ") ";
+                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout() + ")";
             }
             aff += "\n";
         }
         return aff;
     }
 
-    /*public String toGraphviz(){
-        String res = "digraph {\n";
+    public String toGraphviz(){
+        String aff= "digraph {\n";
         for (int i = 0; i<ensNoeuds.size(); i++){
-            ensNoeuds.get(i).
+            for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
+                aff += ensNoeuds.get(i).getNom() + " -> ";
+                aff += ensNoeuds.get(i).getUnArc(j).getDest() + " [label = " + ensNoeuds.get(i).getUnArc(j).getCout() + "]";
+                aff += "\n";
+            }
         }
-        return res;
-    }*/
+        aff +="}";
+        return aff;
+    }
 }
