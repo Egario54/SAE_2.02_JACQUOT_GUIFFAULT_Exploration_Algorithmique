@@ -3,17 +3,17 @@ import java.util.List;
 
 public class Noeud {
 
-    /*
-        Nom du noeud
-         */
+    /**
+     * Nom du noeud
+     */
     private String nom;
 
-    /*
+    /**
     Liste des arcs qui partent du noeud
      */
     private List<Arc> adj;
 
-    /*
+    /**
     Crée un noeud nomme avec une liste vide d'arcs
     @Param String nom du noeud
      */
@@ -22,7 +22,7 @@ public class Noeud {
         this.adj = new ArrayList<Arc>();
     }
 
-    /*
+    /**
     Methode qui compare le nom de deux noeuds
     @param Object noeud
     @return boolean
@@ -33,7 +33,7 @@ public class Noeud {
         return ((n.getNom() == nom));
     }
 
-    /*
+    /**
     Methode qui crée un arc et qui l'ajoute a la liste
     @param String destination de l'arc
     @param double cout de l'arc
