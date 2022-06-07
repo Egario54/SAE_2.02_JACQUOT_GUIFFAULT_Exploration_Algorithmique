@@ -67,4 +67,12 @@ public class GrapheListe implements Graphe{
         }
         return aff;
     }
+
+    /*public String toGraphviz(){
+        String res = "digraph {\n";
+        for (int i = 0; i<ensNoeuds.size(); i++){
+            ensNoeuds.get(i).
+        }
+        return res;
+    }*/
 }
