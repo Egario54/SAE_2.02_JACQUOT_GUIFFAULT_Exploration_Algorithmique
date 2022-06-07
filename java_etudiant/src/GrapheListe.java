@@ -37,14 +37,22 @@ public class GrapheListe implements Graphe{
     @Override
     public List<String> listeNoeuds() {
         List<String > aff = null;
-        for (int i=0; i<ensNom.size(); i++){
-            aff += this.ensNoeuds.get(i).getNom();
+        for (int i=0; i<ensNoeuds.size(); i++){
+            aff.set(i, this.ensNoeuds.get(i).getNom());
         }
         return aff;
     }
 
     @Override
     public List<Arc> suivants(String n) {
-        return null;
+        List<Arc> arcs = null;
+        for (int i=0; i<ensNoeuds.size(); i++){
+            if (ensNoeuds.get(i).equals(n)){
+                for (int j=0; j<ensNoeuds.get(i).getAdj().size(); j++){
+                    arcs = ensNoeuds.get(i).getAdj();
+                }
+            }
+        }
+        return arcs;
     }
 }

@@ -47,4 +47,8 @@ public class Noeud {
         return this.nom;
     }
 
+    public List<Arc> getAdj(){
+        return adj;
+    }
+
 }
