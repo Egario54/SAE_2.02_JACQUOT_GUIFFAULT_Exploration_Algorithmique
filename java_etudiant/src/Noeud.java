@@ -51,4 +51,9 @@ public class Noeud {
         return adj;
     }
 
+    public Arc getUnArc (int i){
+        return adj.get(i);
+    }
+
+
 }
