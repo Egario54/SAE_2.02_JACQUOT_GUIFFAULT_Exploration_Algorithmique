@@ -36,7 +36,11 @@ public class GrapheListe implements Graphe{
 
     @Override
     public List<String> listeNoeuds() {
-        return null;
+        List<String > aff = null;
+        for (int i=0; i<ensNom.size(); i++){
+            aff += this.ensNoeuds.get(i).getNom();
+        }
+        return aff;
     }
 
     @Override
