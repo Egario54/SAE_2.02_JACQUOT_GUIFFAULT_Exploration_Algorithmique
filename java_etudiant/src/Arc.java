@@ -11,18 +11,26 @@ public class Arc {
 
     /**
     Constructeur prenant en compte
-    @param String destination
-    @param double cout
+    @param d destination
+    @param c cout
      */
     public Arc(String d, double c){
         dest = d;
         cout = c;
     }
 
+    /**
+     * getteut de cout
+     * @return cout
+     */
     public double getCout() {
         return cout;
     }
 
+    /**
+     * getteur de destination
+     * @return la destination
+     */
     public String getDest() {
         return dest;
     }

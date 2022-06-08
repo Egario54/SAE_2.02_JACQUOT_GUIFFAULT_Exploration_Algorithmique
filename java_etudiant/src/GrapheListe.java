@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,34 +19,40 @@ public class GrapheListe implements Graphe{
     private List<Noeud> ensNoeuds;
 
     /**
-     * Constructeur qui construit deux listes (noms et noeuds) pour représenter les noeuds
+     * Constructeur qui construit deux listes vides (noms et noeuds) pour représenter les noeuds
      */
     public GrapheListe (){
         this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
     }
 
-
     /**
-     * méthode permettant d'ajouter des noeuds et des arcs
-     * @param depart le nom du noeud de depart
-     * @param destination la destination de l'arc
-     * @param cout le cout de l'arc
+     * Constructeur qui prend un nom de fichier en parametre
+     * et construit un graphe
+     * @param nomFichier ne lom du fichier
      */
-    public void ajouterArc (String depart, String destination, double cout){
-            Noeud n =new Noeud(depart);
-            boolean trouve = false;
-            for (int i= 0; i<ensNoeuds.size(); i++){
-                if (ensNoeuds.get(i).equals(n)){
-                    ensNoeuds.get(i).ajouterArc(destination, cout);
-                    trouve = true;
-                }
+    public GrapheListe(String nomFichier){
+        this.ensNoeuds = new ArrayList<Noeud>();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(nomFichier));
+        } catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        String ligne;
+        try {
+            while ((ligne = br.readLine()) != null){
+                String depart = String.valueOf(ligne.charAt(0));
+                String destination = String.valueOf(ligne.charAt(1));
+                double cout = (double) ligne.charAt(2);
+                ajouterArc(depart, destination, cout);
             }
-            if (!trouve){
-                n.ajouterArc(destination, cout);
-                ensNoeuds.add(n);
-            }
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
+
+
 
     /**
      * Retourne une liste des noms de noeuds
@@ -50,48 +60,88 @@ public class GrapheListe implements Graphe{
      */
     @Override
     public List<String> listeNoeuds() {
-        List<String > aff = null;
         for (int i=0; i<ensNoeuds.size(); i++){
-            aff.set(i, this.ensNoeuds.get(i).getNom());
+            ensNom.set(i, this.ensNoeuds.get(i).getNom());
         }
-        return aff;
+        return ensNom;
     }
 
     /**
      * Methode qui renvoie la liste des arcs d'un noeud
-     * @param n nom des arcs d'un
-     * @return Liste d'arcs
+     *
+     * @param n nom du noeud
+     * @return la liste des arcs d'un noeud
      */
     @Override
     public List<Arc> suivants(String n) {
         Noeud noeud = new Noeud(n);
-        List<Arc> arcs = null;
         for (int i=0; i<ensNoeuds.size(); i++){
             if (ensNoeuds.get(i).equals(noeud)){
                 for (int j=0; j<ensNoeuds.get(i).getAdj().size(); j++){
-                    arcs = ensNoeuds.get(i).getAdj();
+                    return ensNoeuds.get(i).getAdj();
                 }
             }
         }
-        return arcs;
+        return null;
     }
 
+    /**
+     * méthode permettant d'ajouter des arcs à un noeud
+     * @param depart le nom du noeud de depart
+     * @param destination la destination de l'arc
+     * @param cout le cout de l'arc
+     */
+    public void ajouterArc (String depart, String destination, double cout){
+            Noeud n = new Noeud(depart);
+            boolean trouve = false;
+            //si "n" existe déja alors on lui ajoute juste un nouvel arc
+            for (int i= 0; i<ensNoeuds.size(); i++){
+                if (ensNoeuds.get(i).equals(n)){
+                    ensNoeuds.get(i).ajouterArc(destination, cout);
+                    trouve = true;
+                }
+            }
+            //sinon on ajoute à "n" un nouvel arc et on ajoute n à la liste de noeud
+            if (!trouve){
+                n.ajouterArc(destination, cout);
+                ensNoeuds.add(n);
+            }
+    }
+
+
+    /**
+     * méthode toString qui permet d'afficher le graphe sous une forme simplifiée
+     * @return le graphe
+     */
     @Override
     public String toString (){
         String aff= "";
-        for (int i= 0; i<ensNoeuds.size(); i++){
-            aff += ensNoeuds.get(i).getNom() + " -> ";
-            for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
-                aff += ensNoeuds.get(i).getUnArc(j).getDest() + "(" + ensNoeuds.get(i).getUnArc(j).getCout() + ")";
+        int taille = ensNoeuds.size();
+        // pour chaque noeud
+        for (int i= 0; i<taille; i++){
+            Noeud Unoeud = ensNoeuds.get(i);
+            // on affiche son nom
+            aff += Unoeud.getNom() + " -> ";
+            // pour chacun des noeuds on accède à leur arc
+            for (int j=0; j<suivants(Unoeud.getNom()).size(); j++){
+                Arc arcDuNoeud = Unoeud.getUnArc(j);
+                //on affiche pour chaque noeud, ces arcs et les couts jusque ces arcs
+                aff += arcDuNoeud.getDest() + "(" + arcDuNoeud.getCout() + ") ";
             }
             aff += "\n";
         }
         return aff;
     }
 
+    /**
+     *
+     * @return une chaine représentant le graphe en respectant le format GraphViz
+     */
     public String toGraphviz(){
         String aff= "digraph {\n";
+        // pour chaque noeud
         for (int i = 0; i<ensNoeuds.size(); i++){
+            // pour chaque arc d'un noeud
             for (int j=0; j<suivants(ensNoeuds.get(i).getNom()).size(); j++){
                 aff += ensNoeuds.get(i).getNom() + " -> ";
                 aff += ensNoeuds.get(i).getUnArc(j).getDest() + " [label = " + ensNoeuds.get(i).getUnArc(j).getCout() + "]";

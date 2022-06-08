@@ -14,8 +14,9 @@ public class Noeud {
     private List<Arc> adj;
 
     /**
-    Crée un noeud nomme avec une liste vide d'arcs
-    @Param String nom du noeud
+     * Constructeur
+     * Crée un noeud nomme avec une liste vide d'arcs
+     @param n : nom du noeud
      */
     public Noeud (String n){
         this.nom = n;
@@ -23,8 +24,9 @@ public class Noeud {
     }
 
     /**
-    Methode qui compare le nom de deux noeuds
-    @param Object noeud
+     * Methode qui compare le nom de deux noeuds
+     * deux noeuds sont egaux si leur nom sont égaux
+    @param obj noeud
     @return boolean
      */
     @Override
@@ -35,29 +37,41 @@ public class Noeud {
 
     /**
     Methode qui crée un arc et qui l'ajoute a la liste
-    @param String destination de l'arc
-    @param double cout de l'arc
+    @param destination destination de l'arc
+    @param cout cout de l'arc
      */
     public void ajouterArc(String destination, double cout){
         Arc arc = new Arc (destination,cout);
         adj.add(arc);
     }
 
+
+
+    //GETTEUR
+
+    /**
+     * getteur de nom
+     * @return retourne le nom
+     */
     public String getNom(){
         return this.nom;
     }
 
+    /**
+     * getteur de la liste d'arc
+     * @return la liste d'arc
+     */
     public List<Arc> getAdj(){
         return adj;
     }
 
+    /**
+     * retourne un arc à l'endroit i
+     * @param i la place dans la liste
+     * @return l'arc à la position i
+     */
     public Arc getUnArc (int i){
         return adj.get(i);
     }
-
-    public void setNom(String n){
-        this.nom = n;
-    }
-
 
 }
