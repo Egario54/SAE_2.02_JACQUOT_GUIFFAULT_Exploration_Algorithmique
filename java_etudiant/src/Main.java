@@ -12,11 +12,15 @@ public class Main {
         graphe.ajouterArc("D","B",23);
         //affichage du graphe et de graphiz
         System.out.println(graphe.toString());
-        System.out.println(graphe.toGraphviz());
+        //System.out.println(graphe.toGraphviz());
 
         //Création du graphe à partir d'un fichier texte
         GrapheListe gl = new GrapheListe("Graphes/Graphe1.txt");
-        System.out.println(gl.toString());
-        System.out.println(gl.toGraphviz());
+        //System.out.println(gl.toString());
+        //System.out.println(gl.toGraphviz());
+
+        BellmanFord b = new BellmanFord();
+        System.out.println(b.resoudre(graphe, "A").toString());
+
     }
 }

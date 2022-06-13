@@ -1,4 +1,4 @@
-public class Dijkstra {
+/*public class Dijkstra {
     public static Valeur resoudre(Graphe g, String depart){
         Q <- {} // utilisation d’une liste de noeuds `a traiter
         for (chaque sommet v de G faire){
@@ -21,3 +21,4 @@ public class Dijkstra {
         return ;
     }
 }
+*/

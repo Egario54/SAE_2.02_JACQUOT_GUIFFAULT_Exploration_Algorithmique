@@ -10,7 +10,7 @@ public class GrapheListe implements Graphe{
     /**
      * contient les noms des objets noeuds
      */
-    private List<String> ensNom;
+    private List<String> ensNom = new ArrayList<String>();
 
     /**
      * est une liste d'objet Noeuds permettant de stocker les arcs
@@ -21,7 +21,6 @@ public class GrapheListe implements Graphe{
      * Constructeur qui construit deux listes vides (noms et noeuds) pour représenter les noeuds
      */
     public GrapheListe (){
-        this.ensNom = new ArrayList<String>();
         this.ensNoeuds = new ArrayList<Noeud>();
     }
 
@@ -66,9 +65,6 @@ public class GrapheListe implements Graphe{
      */
     @Override
     public List<String> listeNoeuds() {
-        for (int i=0; i<ensNoeuds.size(); i++){
-            ensNom.set(i, this.ensNoeuds.get(i).getNom());
-        }
         return ensNom;
     }
 
@@ -111,6 +107,16 @@ public class GrapheListe implements Graphe{
             if (!trouve){
                 n.ajouterArc(destination, cout);
                 ensNoeuds.add(n);
+                ensNom.add(depart);
+            }
+            boolean destexiste = false;
+            for (int i=0; i < ensNom.size(); i++){
+                if (ensNom.get(i).equals(destination) || ensNom.get(i).equals(depart)){
+                    destexiste = true;
+                }
+            }
+            if ( ! destexiste){
+                ensNom.add(destination);
             }
     }
 
