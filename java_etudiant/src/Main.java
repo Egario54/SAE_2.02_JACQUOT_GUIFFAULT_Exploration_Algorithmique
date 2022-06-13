@@ -21,6 +21,7 @@ public class Main {
 
         BellmanFord b = new BellmanFord();
         System.out.println(b.resoudre(graphe, "A").toString());
+        System.out.println(b.resoudre(graphe, "A").calculerChemin("C"));
 
     }
 }

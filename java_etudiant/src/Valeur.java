@@ -89,4 +89,18 @@ public class Valeur {
 
     }
 
+    public List<String> calculerChemin(String destination){
+        List<String> chemin = new ArrayList<String>();
+        boolean trouve = false;
+        while (!trouve){
+            chemin.add(destination);
+            destination = getParent(destination);
+            if (getValeur(destination) == 0) {
+                chemin.add(destination);
+                trouve = true;
+            }
+        }
+        return chemin;
+    }
+
 }
