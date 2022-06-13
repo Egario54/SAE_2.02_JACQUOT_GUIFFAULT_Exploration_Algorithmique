@@ -12,7 +12,6 @@ public class GrapheListe implements Graphe{
      */
     private List<String> ensNom;
 
-
     /**
      * est une liste d'objet Noeuds permettant de stocker les arcs
      */
@@ -32,27 +31,34 @@ public class GrapheListe implements Graphe{
      * @param nomFichier ne lom du fichier
      */
     public GrapheListe(String nomFichier){
+        //création d'une liste pour l'instant vide
         this.ensNoeuds = new ArrayList<Noeud>();
         BufferedReader br = null;
         try {
+            //charge le fichier
             br = new BufferedReader(new FileReader(nomFichier));
         } catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
         String ligne;
         try {
+            //parcours de chaque ligne du fichier
             while ((ligne = br.readLine()) != null){
-                String depart = String.valueOf(ligne.charAt(0));
-                String destination = String.valueOf(ligne.charAt(1));
-                double cout = (double) ligne.charAt(2);
+                String depart;
+                String destination;
+                double cout;
+                //pour chaque ligne on prend le "depart", c'est a dire le nom du noeud
+                depart=ligne.split("\t")[0];
+                // puis la destination de l'arc
+                destination = ligne.split("\t")[1];
+                //et enfin le cout qui va de depart à destination
+                cout = Double.parseDouble(ligne.split("\t")[2]);
                 ajouterArc(depart, destination, cout);
             }
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
     }
-
-
 
     /**
      * Retourne une liste des noms de noeuds
@@ -108,7 +114,6 @@ public class GrapheListe implements Graphe{
             }
     }
 
-
     /**
      * méthode toString qui permet d'afficher le graphe sous une forme simplifiée
      * @return le graphe
@@ -151,4 +156,6 @@ public class GrapheListe implements Graphe{
         aff +="}";
         return aff;
     }
+
+
 }

@@ -14,7 +14,9 @@ public class Main {
         System.out.println(graphe.toString());
         System.out.println(graphe.toGraphviz());
 
+        //Création du graphe à partir d'un fichier texte
         GrapheListe gl = new GrapheListe("Graphes/Graphe1.txt");
         System.out.println(gl.toString());
+        System.out.println(gl.toGraphviz());
     }
 }
