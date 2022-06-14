@@ -157,5 +157,7 @@ public class GrapheListe implements Graphe{
         return aff;
     }
 
-
+    public List<Noeud> getEnsNoeuds() {
+        return ensNoeuds;
+    }
 }

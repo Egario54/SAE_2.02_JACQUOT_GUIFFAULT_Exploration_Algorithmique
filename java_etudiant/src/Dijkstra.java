@@ -1,23 +1,48 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dijkstra {
-    public static Valeur resoudre(Graphe g, String depart){
-        Q <- {} // utilisation d’une liste de noeuds `a traiter
-        for (chaque sommet v de G faire){
-        v.distance <- Infini
-        v.parent <- Ind ́efini
-        Q <- Q U {v} // ajouter le sommet v `a la liste Q
+    public Valeur resoudre(Graphe g, String depart){
+        List<String> str = g.listeNoeuds();
+        Valeur res = new Valeur();
+        //initialisation
+        for (int i = 0; i<g.listeNoeuds().size(); i++){
+            String nom = g.listeNoeuds().get(i);
+            if(nom == depart){
+                res.setValeur(nom,0);
+            }
+            else res.setValeur(nom,Double.MAX_VALUE);
+            res.setParent(nom,null);
         }
-        A.distance <- 0
-        Tant que Q est un ensemble non vide faire
-        u <- un sommet de Q telle que u.distance est minimale
-        Q <- Q \ {u} // enlever le sommet u de la liste Q
-        Pour chaque sommet v de Q tel que l’arc (u,v) existe faire
-        D <- u.distance + poids(u,v)
-        Si D < v.distance
-        Alors v.distance <- D
-        v.parent <- u
-        Fin Si
-        Fin Pour
-        Fin Tant que
-        return ;
+        //seconde boucle : parcours
+        while (!q.isEmpty()){
+            u <- un sommet de Q telle que u.distance est minimale
+            /**
+             * Minimum
+             * Trouve_min(Q)
+             * 1 mini := infini
+             * 2 sommet := -1
+             * 3 pour chaque sommet s de Q
+             * 4    si d[s] < mini
+             * 5    alors
+             * 6        mini := d[s]
+             * 7        sommet := s
+             * 8 renvoyer sommet
+             */
+
+
+
+
+
+            Q <- Q \{u} // enlever le sommet u de la liste Q
+            for (chaque sommet v de Q tel que l’arc(u,v) existe){
+                D <- u.distance + poids(u,v)
+                if (D <v.distance) {
+                    v.distance <- D
+                    v.parent <- u
+                }
+            }
+        }
+        return res;
     }
 }
