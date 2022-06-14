@@ -99,7 +99,7 @@ public class Valeur {
         while (!trouve){
             chemin.add(destination);
             destination = getParent(destination);
-            if (getParent(destination).equals("fin") ) {
+            if (getParent(destination).equals("fin")) {
                 chemin.add(destination);
                 trouve = true;
             }

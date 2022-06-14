@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BellmanFord {
+public class BellmanFord implements Algorithme {
     /**
      * le methode resoudre permet de trouvre le chemin le plus de depart aux autres noeud
      * en utilisant la methode du point fixe
@@ -9,7 +9,7 @@ public class BellmanFord {
      * @param depart represente le noeud de depart
      * @return objet valeur correctent construit contenant les distances et les parents de chaque noeud
      */
-    public static Valeur resoudre(Graphe g, String depart){
+    public Valeur resoudre(Graphe g, String depart){
         Valeur val = new Valeur();
 
         // INITIALISATION
