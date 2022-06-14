@@ -20,6 +20,7 @@ public class BellmanFord {
         }
         // on attribut 0 au noeud de depart
         val.setValeur(depart, 0);
+        val.setParent(depart, "fin");
         boolean continuer = true;
         // tant qu'on a pas atteint un point fixe, on continue la boucle
         while (continuer){
@@ -27,10 +28,15 @@ public class BellmanFord {
             // pour chaque arc (u, v, poids) de g faire :
             for (int i = 0; i < g.listeNoeuds().size(); i++){
                 for (int j = 0; j < g.suivants(g.listeNoeuds().get(i)).size(); j++){
-                    // Si L(v) <- L(u) + poids alors
-                    if (val.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout() < val.getValeur(g.suivants(g.listeNoeuds().get(i)).get(j).getDest())){
-                        val.setValeur(g.suivants(g.listeNoeuds().get(i)).get(j).getDest(), val.getValeur(g.listeNoeuds().get(i)) + g.suivants(g.listeNoeuds().get(i)).get(j).getCout());
-                        val.setParent(g.suivants(g.listeNoeuds().get(i)).get(j).getDest() , g.listeNoeuds().get(i));
+                    // Si L(v) < L(u) + poids alors
+                    String lv = g.suivants(g.listeNoeuds().get(i)).get(j).getDest();
+                    double lv_valeur = val.getValeur(g.suivants(g.listeNoeuds().get(i)).get(j).getDest());
+                    double lu = val.getValeur(g.listeNoeuds().get(i));
+                    double poids = g.suivants(g.listeNoeuds().get(i)).get(j).getCout();
+                    if ((lu + poids ) <  lv_valeur ){
+                        //alors l(v) <- l(u) + poids
+                        val.setValeur(lv, (lu + poids));
+                        val.setParent(lv , g.listeNoeuds().get(i));
                         continuer = true;
                     }
                 }

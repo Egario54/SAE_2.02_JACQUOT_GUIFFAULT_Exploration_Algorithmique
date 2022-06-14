@@ -1,5 +1,9 @@
-/*public class Dijkstra {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Dijkstra {
     public static Valeur resoudre(Graphe g, String depart){
+        /*
         Q <- {} // utilisation d’une liste de noeuds `a traiter
         for (chaque sommet v de G faire){
         v.distance <- Infini
@@ -19,6 +23,6 @@
         Fin Pour
         Fin Tant que
         return ;
+         */
     }
 }
-*/

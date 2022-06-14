@@ -89,13 +89,18 @@ public class Valeur {
 
     }
 
+    /**
+     * permet de trouver le chemin le plus court entre le point de depart jusqu'au noeud passe en parametre
+     * @param destination la destination
+     * @return une liste de noeuds coorespondant au chemin menant au noeud passe en parametre
+     */
     public List<String> calculerChemin(String destination){
         List<String> chemin = new ArrayList<String>();
         boolean trouve = false;
         while (!trouve){
             chemin.add(destination);
             destination = getParent(destination);
-            if (getValeur(destination) == 0) {
+            if (getParent(destination).equals("fin") ) {
                 chemin.add(destination);
                 trouve = true;
             }
