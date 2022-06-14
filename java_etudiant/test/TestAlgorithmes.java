@@ -10,7 +10,7 @@ public class TestAlgorithmes {
     public void testBellmanFord(){
         GrapheListe graphe = construireGraphe();
         Valeur v = BellmanFord.resoudre(graphe,"A");
-        //1ere serie de tests : teste chaque valeur de
+        //1ere serie de tests : teste chaque valeur de chaque sommet
         assertEquals(0, v.getValeur("A"), "A devrait etre egal a 0");
         assertEquals(12,v.getValeur("B"),"B devrait etre egal a 12");
         assertEquals(23,v.getValeur("E"),"E devrait etre egal a 22");
@@ -23,12 +23,12 @@ public class TestAlgorithmes {
     }
 
 
-    /*@Test
+    @Test
     public void testDijkstra() {
         GrapheListe graphe = construireGraphe();
         Dijkstra d = new Dijkstra();
         Valeur v = d.resoudre(graphe, "A");
-        //1ere serie de tests : teste chaque valeur de
+        //1ere serie de tests : teste chaque valeur de chaque sommet
         assertEquals(0, v.getValeur("A"), "A devrait etre egal a 0");
         assertEquals(12,v.getValeur("B"),"B devrait etre egal a 12");
         assertEquals(23,v.getValeur("E"),"E devrait etre egal a 22");
@@ -38,7 +38,7 @@ public class TestAlgorithmes {
         for(int i = 0; i<5;i++){
             assertEquals(listeTest().get(i),v.calculerChemin("C").get(i),"Le chemin n'est pas correctement ordonne");
         }
-    }*/
+    }
 
     /**
      * Methode construisant le graphe présent dans la SAE 2.02, page 12
