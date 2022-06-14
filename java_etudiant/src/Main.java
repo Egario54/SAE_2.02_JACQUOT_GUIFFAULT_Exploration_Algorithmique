@@ -11,7 +11,7 @@ public class Main {
         graphe.ajouterArc("C","A",19);
         graphe.ajouterArc("D","B",23);
         //affichage du graphe et de graphiz
-        System.out.println(graphe.toString());
+        //System.out.println(graphe.toString());
         //System.out.println(graphe.toGraphviz());
 
         //Création du graphe à partir d'un fichier texte
@@ -19,9 +19,12 @@ public class Main {
         //System.out.println(gl.toString());
         //System.out.println(gl.toGraphviz());
 
-        BellmanFord b = new BellmanFord();
-        System.out.println(b.resoudre(graphe, "A").toString());
-        System.out.println(b.resoudre(graphe, "A").calculerChemin("C"));
+        //BellmanFord b = new BellmanFord();
+        //System.out.println(b.resoudre(graphe, "A").toString());
+        //System.out.println(b.resoudre(graphe, "A").calculerChemin("C"));
 
+        Dijkstra d = new Dijkstra();
+        System.out.println(d.resoudre(graphe, "A").toString());
+        System.out.println(d.resoudre(graphe, "A").calculerChemin("C"));
     }
 }
