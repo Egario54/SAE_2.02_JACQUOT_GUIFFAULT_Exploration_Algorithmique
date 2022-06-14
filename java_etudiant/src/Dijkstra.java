@@ -20,6 +20,7 @@ public class Dijkstra {
             double petit = Double.MAX_VALUE;
             for (int i= 0; i< str.size(); i++){
                 if (petit > res.getValeur(str.get(i))){
+                    petit = res.getValeur(str.get(i));
                     j = i;
                 }
             }
