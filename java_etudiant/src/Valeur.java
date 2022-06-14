@@ -104,7 +104,11 @@ public class Valeur {
                 trouve = true;
             }
         }
-        return chemin;
+        List<String> res = new ArrayList<>();
+        res.add("Fin");
+        for (int i = chemin.size()-1;i>=0;i--){
+            res.add(chemin.get(i));
+        }
+        return res;
     }
-
 }
