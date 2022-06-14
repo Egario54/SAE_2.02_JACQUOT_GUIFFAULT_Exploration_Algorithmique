@@ -2,32 +2,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BellmanFord {
+    /**
+     * le methode resoudre permet de trouvre le chemin le plus de depart aux autres noeud
+     * en utilisant la methode du point fixe
+     * @param g le graphe
+     * @param depart represente le noeud de depart
+     * @return objet valeur correctent construit contenant les distances et les parents de chaque noeud
+     */
     public static Valeur resoudre(Graphe g, String depart){
-        Valeur val = null;
-        int taille = g.listeNoeuds().size();
-        //pour chaque noeud
-        for (int i =0; taille<i ; i++) {
+        Valeur val = new Valeur();
+
+        // INITIALISATION
+        //pour chaque noeud dans le graphe g
+        for (int i =0;i < g.listeNoeuds().size() ; i++) {
+            // on attribut +00 à chaque noeud dans le graphe
             val.setValeur(g.listeNoeuds().get(i), Double.MAX_VALUE);
-            // pour chaque arc
-            for (int j = 0; j < g.suivants(g.listeNoeuds().get(i)).size(); j++){
-                // je dis qui est le daron de qui
-                val.setParent(g.suivants(g.listeNoeuds().get(i)).get(i).getDest(), g.listeNoeuds().get(i));
-            }
         }
+        // on attribut 0 au noeud de depart
         val.setValeur(depart, 0);
+        val.setParent(depart, "fin");
         boolean continuer = true;
+        // tant qu'on a pas atteint un point fixe, on continue la boucle
         while (continuer){
             continuer = false;
-            // pour chaque noeud
+            // pour chaque arc (u, v, poids) de g faire :
             for (int i = 0; i < g.listeNoeuds().size(); i++){
-                // nom est le nom du noeud
-                String nom = g.listeNoeuds().get(i);
-                //pour chaque arc du noeud
-                for (int j = 0; j < g.suivants(nom).size(); i++){
-                    // si  cout de l'arc j du noeud i  + cout du noeud parent > cout de la valeur i
-                    if ( g.suivants(nom).get(j).getCout() + val.getValeur(val.getParent(nom)) < val.getValeur(nom)){
-                        val.setValeur(nom, g.suivants(nom).get(j).getCout() + val.getValeur(val.getParent(nom)));
-                        val.setParent(nom, val.getParent(nom));
+                for (int j = 0; j < g.suivants(g.listeNoeuds().get(i)).size(); j++){
+                    // Si L(v) < L(u) + poids alors
+                    String lv = g.suivants(g.listeNoeuds().get(i)).get(j).getDest();
+                    double lv_valeur = val.getValeur(g.suivants(g.listeNoeuds().get(i)).get(j).getDest());
+                    double lu = val.getValeur(g.listeNoeuds().get(i));
+                    double poids = g.suivants(g.listeNoeuds().get(i)).get(j).getCout();
+                    if ((lu + poids ) <  lv_valeur ){
+                        //alors l(v) <- l(u) + poids
+                        val.setValeur(lv, (lu + poids));
+                        val.setParent(lv , g.listeNoeuds().get(i));
                         continuer = true;
                     }
                 }
