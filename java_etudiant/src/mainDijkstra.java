@@ -1,7 +1,7 @@
 public class mainDijkstra {
     public static void main(String[] args) {
         // lecture des graphes à partir de fichier texte
-        GrapheListe gl = new GrapheListe("Graphes/Graphe101.txt");
+        GrapheListe gl = new GrapheListe("generer.txt");
         // calcul des chemins les plus courts des noeuds donnees
         Algorithme dijksta = new Dijkstra();
         long debut = System.nanoTime();
