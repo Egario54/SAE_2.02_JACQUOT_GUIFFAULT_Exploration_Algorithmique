@@ -11,7 +11,7 @@ public interface Graphe {
      * Methode qui renvoie la liste des arcs d'un noeud
      *
      * @param n nom des arcs d'un
-     * @return
+     * @return une liste d'arc
      */
     public List<Arc> suivants(String n);
 }

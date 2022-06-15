@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Random;
 
 public class GenererGraphes {
-    private final static int TAILLE = 100;
+    private final static int TAILLE = 10;
 
     public void generer() throws FileNotFoundException {
        PrintWriter writer = new PrintWriter("generer.txt");
@@ -21,7 +21,7 @@ public class GenererGraphes {
             if (i > 1){
                 writer.write(i + "\t" + avant + "\t" + cout + "\n");
             }
-            int connexion = r.nextInt(4);
+            int connexion = r.nextInt(5);
             for(int j=0; j<connexion; j++){
                 int lien = randlien.nextInt(TAILLE);
                 cout = rand.nextInt(30) + 1 ;

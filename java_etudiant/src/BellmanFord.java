@@ -24,6 +24,8 @@ public class BellmanFord implements Algorithme {
         boolean continuer = true;
         // tant qu'on a pas atteint un point fixe, on continue la boucle
         while (continuer){
+            //affichage de l'objet valeur apres chaque iteration
+            //System.out.println(val);
             continuer = false;
             // pour chaque arc (u, v, poids) de g faire :
             for (int i = 0; i < g.listeNoeuds().size(); i++){

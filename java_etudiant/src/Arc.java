@@ -19,6 +19,9 @@ public class Arc {
         cout = c;
     }
 
+
+    // GETTEUR
+
     /**
      * getteut de cout
      * @return cout

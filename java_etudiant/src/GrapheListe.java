@@ -10,7 +10,7 @@ public class GrapheListe implements Graphe{
     /**
      * contient les noms des objets noeuds
      */
-    private List<String> ensNom = new ArrayList<String>();
+    private List<String> ensNom;
 
     /**
      * est une liste d'objet Noeuds permettant de stocker les arcs
@@ -22,6 +22,7 @@ public class GrapheListe implements Graphe{
      */
     public GrapheListe (){
         this.ensNoeuds = new ArrayList<Noeud>();
+        this.ensNom = new ArrayList<String>();
     }
 
     /**
@@ -30,6 +31,7 @@ public class GrapheListe implements Graphe{
      * @param nomFichier ne lom du fichier
      */
     public GrapheListe(String nomFichier){
+        this.ensNom = new ArrayList<String>();
         //création d'une liste pour l'instant vide
         this.ensNoeuds = new ArrayList<Noeud>();
         BufferedReader br = null;
@@ -78,7 +80,7 @@ public class GrapheListe implements Graphe{
     public List<Arc> suivants(String n) {
         Noeud noeud = new Noeud(n);
         for (int i=0; i<ensNoeuds.size(); i++){
-            if (ensNoeuds.get(i).equals(noeud)){
+            if (ensNoeuds.get(i).getNom().equals(noeud.getNom())){
                 for (int j=0; j<ensNoeuds.get(i).getAdj().size(); j++){
                     return ensNoeuds.get(i).getAdj();
                 }
@@ -98,7 +100,7 @@ public class GrapheListe implements Graphe{
             boolean trouve = false;
             //si "n" existe déja alors on lui ajoute juste un nouvel arc
             for (int i= 0; i<ensNoeuds.size(); i++){
-                if (ensNoeuds.get(i).equals(n)){
+                if (ensNoeuds.get(i).getNom().equals(depart)){
                     ensNoeuds.get(i).ajouterArc(destination, cout);
                     trouve = true;
                 }
@@ -149,7 +151,7 @@ public class GrapheListe implements Graphe{
      * @return une chaine représentant le graphe en respectant le format GraphViz
      */
     public String toGraphviz(){
-        String aff= "digraph {\n";
+        String aff= "digraph G {\n";
         // pour chaque noeud
         for (int i = 0; i<ensNoeuds.size(); i++){
             // pour chaque arc d'un noeud
@@ -163,6 +165,10 @@ public class GrapheListe implements Graphe{
         return aff;
     }
 
+    /**
+     * getteur de ensnoeuds
+     * @return ensnoeuds
+     */
     public List<Noeud> getEnsNoeuds() {
         return ensNoeuds;
     }

@@ -9,7 +9,7 @@ public class Noeud {
     private String nom;
 
     /**
-    Liste des arcs qui partent du noeud
+    Liste des arcs reliant ce noeud à ses noeuds adjacents
      */
     private List<Arc> adj;
 
@@ -31,8 +31,8 @@ public class Noeud {
      */
     @Override
     public boolean equals(Object obj){
-        Noeud n = (Noeud) obj;
-        return ((n.getNom() == nom));
+        String n = (String) obj;
+        return ((n == nom));
     }
 
     /**
