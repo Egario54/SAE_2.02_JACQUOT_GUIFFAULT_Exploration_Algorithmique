@@ -3,7 +3,7 @@ import java.util.List;
 
 public class BellmanFord implements Algorithme {
     /**
-     * le methode resoudre permet de trouvre le chemin le plus de depart aux autres noeud
+     * le methode resoudre permet de trouver le chemin le plus court du depart aux autres noeuds
      * en utilisant la methode du point fixe
      * @param g le graphe
      * @param depart represente le noeud de depart

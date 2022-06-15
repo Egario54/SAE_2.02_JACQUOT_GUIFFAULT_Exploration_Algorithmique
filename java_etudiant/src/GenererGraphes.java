@@ -4,6 +4,10 @@ import java.util.Random;
 public class GenererGraphes {
     private final static int TAILLE = 10;
 
+    /**
+     * Methode qui genere un fichier generer.txt a la racine du projet
+     * @throws FileNotFoundException necessaire sinon la compilation echoue
+     */
     public void generer() throws FileNotFoundException {
        PrintWriter writer = new PrintWriter("generer.txt");
         Random r = new Random();

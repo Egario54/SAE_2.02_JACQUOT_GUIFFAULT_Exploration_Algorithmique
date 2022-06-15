@@ -147,7 +147,7 @@ public class GrapheListe implements Graphe{
     }
 
     /**
-     *
+     * Methode qui genere un string represantant un graphe Graphviz
      * @return une chaine représentant le graphe en respectant le format GraphViz
      */
     public String toGraphviz(){
